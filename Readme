@@ -1,0 +1,55 @@
+# Vulnerability Scan Report
+**Intern:** Priyadharshini L  
+**Task:** Mobile-only basic vulnerability scan  
+**Date:** September 25, 2025  
+**Target:** scanme.nmap.org
+
+---
+
+## Tools used
+- SSL Labs (SSL/TLS test) — https://www.ssllabs.com/ssltest/  
+- Security Headers — https://securityheaders.com/  
+- Mozilla Observatory — https://observatory.mozilla.org/
+
+---
+
+## Steps performed
+1. Checked SSL/TLS configuration with SSL Labs. (Screenshot: ssl_results.png)  
+2. Checked HTTP security headers. (Screenshot: securityheaders.png)  
+3. Ran Mozilla Observatory. (Screenshot: observatory.png)  
+
+---
+
+## Findings (example format)
+1. **SSL/TLS Grade**: B — *Explanation:* server allows older TLS versions (possible downgrade).  
+2. **Missing header**: Content-Security-Policy — *Explanation:* without it, site is more open to XSS risks.  
+3. **Other**: Weak or missing HSTS header — *Explanation:* browsers may not force HTTPS.
+
+*(Note: replace each finding with the exact issue text from the scanner results.)*
+
+---
+
+## Severity & Recommendations
+- **High:** Missing Content-Security-Policy → *Recommendation:* Implement CSP to restrict allowed scripts and resources.  
+- **Medium:** Supports TLS 1.0/1.1 → *Recommendation:* Disable TLS 1.0/1.1, enable TLS 1.2+ only.  
+- **Low:** Missing security headers like Referrer-Policy → *Recommendation:* Add recommended security headers.
+
+---
+
+## Short remediation plan (my unique mini-plan)
+1. Add strict CSP header (report blocker rules first).  
+2. Force TLS 1.2+ and update server certs if needed.  
+3. Add HSTS with `max-age=31536000; includeSubDomains; preload`.  
+4. Re-run scans and attach updated screenshots.
+
+---
+
+## What I learned
+- How to run quick, phone-only checks and explain the security findings in plain language.
+
+---
+
+## Evidence (screenshots)
+- `ssl_results.png`  
+- `securityheaders.png`  
+- `observatory.png`
